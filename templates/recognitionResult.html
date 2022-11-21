@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    RESULT: {{ prediction }}
+
+    {% if img_obj %}
+        <img src="{{ img_obj.image.url }}" alt="connect" style="max-height:600px">
+    {% endif %}
+
+{% endblock %}

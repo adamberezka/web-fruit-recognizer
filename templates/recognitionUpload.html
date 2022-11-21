@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <img  style="width: 300px;"
+        src="{% if src %}{{ src }}{% else %}http://atrilco.com/wp-content/uploads/2017/11/ef3-placeholder-image.jpg{% endif %}"
+        id="image-preview"
+    />
+
+<script>
+  function changeThumbnail() {
+    document
+      .getElementById(`id_image`)
+      .addEventListener("change", function (e) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById(`image-preview`).src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+      });
+  }
+
+  function docReady(fn) {
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      setTimeout(fn, 1);
+    } else {
+      document.addEventListener("DOMContentLoaded", fn);
+    }
+  }
+   docReady(changeThumbnail);
+</script>
+
+{% endblock %}
