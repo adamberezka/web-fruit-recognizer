@@ -3,10 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>>{% block title %}Fruits Recognizer{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
 </head>
-    <body>
-        <div style="margin: auto; width: 50%;">
-            {% block content %}{% endblock %}
-        </div>
-    </body>
+<body>
+
+<div style="margin: auto; width: 50%;">
+
+    <div class="my-4">
+        <ul class="h3 nav nav-tabs text-black">
+            {% if '/recognition/' == request.path %}
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/recognition">Prediction</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/recognition">Prediction</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+
+    <div>{% block content %}{% endblock %}</div>
+</div>
+</body>
 </html>

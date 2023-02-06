@@ -2,10 +2,35 @@
 
 {% block content %}
 
-    RESULT: {{ prediction }}
+    <div class="rounded shadow-sm m-2 p-2 border border-dark d-flex flex-row">
+                <div style="margin-right: 20px;">
+                    <img class="border border-secondary-subtle" src="{{ img_obj.image.url }}"
+                         style="max-height: 800px; max-width: 400px;" alt=image/>
+                </div>
+                <div>
+                    <div class="card border-primary mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Fruit on image:</div>
+                        <div class="card-body text-primary">
+                            <h5 class="card-title">{{ img_obj.fruit }}</h5>
+                        </div>
+                    </div>
 
-    {% if img_obj %}
-        <img src="{{ img_obj.image.url }}" alt="connect" style="max-height:600px">
-    {% endif %}
+                    {% if prediction.fruit == prediction.prediction %}
+                        <div class="card border-success mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Model prediction:</div>
+                            <div class="card-body text-success">
+                                <h5 class="card-title">{{ img_obj.prediction }}</h5>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card border-danger mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Model prediction:</div>
+                            <div class="card-body text-danger">
+                                <h5 class="card-title">{{ img_obj.prediction }}</h5>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
 
 {% endblock %}
